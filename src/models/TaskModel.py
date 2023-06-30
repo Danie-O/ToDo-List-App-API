@@ -2,7 +2,7 @@ from . import db
 import datetime
 
 from marshmallow import fields, Schema
-from .UserModel import UserSchema
+# from .UserModel import UserSchema
 
 
 class TaskModel(db.Model):
@@ -49,7 +49,7 @@ class TaskModel(db.Model):
         return TaskModel.query.all()
     
     @staticmethod
-    def get_task(title):
+    def get_task_by_title(title):
         return TaskModel.query.get(title)
 
     def __repr__(self): 
@@ -65,7 +65,7 @@ class TaskSchema(Schema):
     """
     id = fields.Int(dump_only=True)
     title = fields.Str(required=True)
-    description = fields.Text(required=True)
+    description = fields.Str(required=True)
     owner_id = fields.Int(required=True)
     due_date = fields.Date(required=True)
     created_at = fields.DateTime(dump_only=True)
